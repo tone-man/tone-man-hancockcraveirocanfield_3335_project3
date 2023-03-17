@@ -6,9 +6,16 @@ package csc3335_project3;
  */
 
 /**
- *
+ * Interface for searching over a state space.
  * @author ncrav
  */
-public interface SearchAble {
+public interface Searchable {
     
+    /**
+     * Searches a state space given a game
+     * @param g
+     * @param s
+     * @return String - Best next move for the agent
+     */
+    public String search(Game g, State s);
 }
