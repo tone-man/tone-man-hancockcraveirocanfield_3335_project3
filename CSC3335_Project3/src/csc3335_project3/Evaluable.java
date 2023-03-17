@@ -10,4 +10,11 @@ package csc3335_project3;
  */
 public interface Evaluable {
     
+    /**
+     * Evaluates a state given a game.
+     * @param g
+     * @param s
+     * @return
+     */
+    public int eval(Game g, State s);
 }
