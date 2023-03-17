@@ -8,6 +8,16 @@ package csc3335_project3;
  *
  * @author ncrav
  */
-public class CutoffSearch {
+public class CutoffSearch implements Searchable {
+
+    private Evaluable evaluator;
+    private Thread searchThread;
+    private int searchCutoff;
+    private int evalCutoff; //Unsure if neccessary
+    
+    @Override
+    public String search(Game g, State s) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
     
 }
