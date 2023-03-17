@@ -4,10 +4,31 @@
  */
 package csc3335_project3;
 
+import java.util.Map;
+
 /**
  *
  * @author ncrav
  */
-public class IterativeMinMax {
+public class IterativeMinMax implements Runnable, Searchable{
+
+    private Map<State, Integer> transpositions;
     
+    @Override
+    public void run() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public String search(Game g, State s) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+    
+    private Tuple<State, Integer> maxValue(Game g, State s){
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+    
+    private Tuple<State, Integer> minValue(Game g, State s){
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
 }
