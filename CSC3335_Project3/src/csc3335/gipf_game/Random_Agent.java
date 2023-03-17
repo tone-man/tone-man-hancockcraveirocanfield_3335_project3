@@ -1,4 +1,4 @@
-package csc3335_project3;
+package csc3335.gipf_game;
 
 import csc3335.gipf_game.GipfGame;
 import csc3335.gipf_game.GipfPlayable;
