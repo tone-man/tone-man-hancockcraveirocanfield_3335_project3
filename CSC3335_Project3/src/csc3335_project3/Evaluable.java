@@ -16,5 +16,5 @@ public interface Evaluable {
      * @param s
      * @return
      */
-    public int eval(Game g, State s);
+    public int eval(Playable g, State s);
 }

@@ -11,7 +11,7 @@ package csc3335_project3;
 public class MaterialEval implements Evaluable{
 
     @Override
-    public int eval(Game g, State s) {
+    public int eval(Playable g, State s) {
         throw new UnsupportedOperationException("Not supported yet."); 
     }
     

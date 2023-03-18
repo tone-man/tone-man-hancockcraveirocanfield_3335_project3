@@ -20,15 +20,15 @@ public class IterativeMinMax implements Runnable, Searchable{
     }
 
     @Override
-    public String search(Game g, State s) {
+    public String search(Playable game, State state) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
     
-    private Tuple<State, Integer> maxValue(Game g, State s){
+    private Tuple<State, Integer> maxValue(Playable game, State state){
         throw new UnsupportedOperationException("Not supported yet.");
     }
     
-    private Tuple<State, Integer> minValue(Game g, State s){
+    private Tuple<State, Integer> minValue(Playable game, State state){
         throw new UnsupportedOperationException("Not supported yet.");
     }
 }

@@ -10,12 +10,17 @@ package csc3335_project3;
  */
 public class State {
     
-    private int[] peicesLeft;
-    private int[] gipfRemaining;
-    private int[][] board;
-    private int turn;
-    private String prevAction;
+    public int[] piecesLeft;
+    public int[] gipfsRemaining;
+    public int[][] board;
+    public int plr;
+    public String prevAction;
     
+    public State(int[] piecesLeft, int[] gipfsRemaining, int[][] board, 
+            int plr, String prevAction) 
+    {
+        
+    }
     @Override
     public boolean equals(Object otherObject) {
               throw new UnsupportedOperationException("Not supported yet.");

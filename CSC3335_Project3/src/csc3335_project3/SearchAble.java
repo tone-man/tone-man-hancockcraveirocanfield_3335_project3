@@ -17,5 +17,5 @@ public interface Searchable {
      * @param s
      * @return String - Best next move for the agent
      */
-    public String search(Game g, State s);
+    public String search(Playable g, State s);
 }
