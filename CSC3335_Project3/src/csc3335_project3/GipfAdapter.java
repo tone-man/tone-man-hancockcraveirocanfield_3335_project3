@@ -9,15 +9,15 @@ import java.util.ArrayList;
  */
 
 /**
- * Class containing universal gipf game rules. Just needed to access more things
- * than the original class allowed.
+ * Adapter that takes a GipfGame object and adapts it to the playable interface.
+ * This makes it much easier to use with the codebase.
  * @author ncrav
  */
 public class GipfAdapter implements Playable {
     
-    public static State initialState;
-    public static char[] letterValues = "abcdefghi".toCharArray();
-    public static String[] columns = {"a", "b", "c", "d", "e", "f", "g", "h", "i"};
+    public GipfGame gipfGame;
+    public State initialState;
+    public char[] letterValues = "abcdefghi".toCharArray();
     public static String[] edgeSpots = {"a 1", "a 2", "a 3", "a 4", "a 5", "b 1", "b 6",
         "c 1", "c 7", "d 1", "d 8", "e 1", "e 9", "f 1", "f 8", "g 1", "g 7", "h 1", "h 6",
         "i 1", "i 2", "i 3", "i 4", "i 5"};
@@ -34,92 +34,69 @@ public class GipfAdapter implements Playable {
         };
     
     public GipfAdapter(GipfGame g) {
-        
+        gipfGame = g;
     }
     
-    /**
-     * Returns whose turn it is to move in a given state.
-     * @param s State that is being examined
-     * @return 
-     */
     @Override
-    public State toMove(State s){
+    public State toMove(State state){
         throw new UnsupportedOperationException("Not supported yet.");
     }
     
-    /**
-     * Gives all the possible actions the agent can take from a given state.
-     * @param s State that is being examined
-     * @return ArrayList of all possible actions that can be taken from that state.
-     */
+
     @Override
-    public ArrayList<String> getActions(State s) {
+    public ArrayList<String> getActions(State state) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
     
-    /**
-     * Gives the resulting board state of an action
-     * @param s State the board is currently in
-     * @param action String representing the next move
-     * @return Resulting board state of the action
-     */
+
     @Override
-    public State result(State s, String action){
+    public State result(State state, String action){
         throw new UnsupportedOperationException("Not supported yet.");
     }
     
-    /**
-     * Determines if a given state is terminal.
-     * @param s State that is being examined
-     * @return 
-     */
+
     @Override
-    public boolean isTerminal(State s){
-        if (s.piecesLeft[0] == 0) {
+    public boolean isTerminal(State state){
+        if (state.piecesLeft[0] == 0) {
             return true;
         }
-        if (s.piecesLeft[1] == 0) {
+        if (state.piecesLeft[1] == 0) {
             return true;
         }
-        if (s.gipfsRemaining[0] == 0) {
+        if (state.gipfsRemaining[0] == 0) {
             return true;
         }
-        if (s.gipfsRemaining[1] == 0) {
+        if (state.gipfsRemaining[1] == 0) {
             return true;
         }
         return false;
     }
     
-    /**
-     * Generates the utility value of a given state for a player.
-     * @param t Terminal state that is being examined
-     * @param p Player that is being examined
-     * @return 
-     */
+
     @Override
-    public int utility(State t, int p) {
-        if (t.piecesLeft[0] == 0) {
-            if (p == 0)
+    public int utility(State tState, int plr) {
+        if (tState.piecesLeft[0] == 0) {
+            if (plr == 0)
                 return 0;
             
             return 1;
         }
-        if (t.piecesLeft[1] == 0) {
-            if (p == 1) {
+        if (tState.piecesLeft[1] == 0) {
+            if (plr == 1) {
                 return 0;
             }
 
             return 1;
         }
-        if (t.gipfsRemaining[0] == 0) {
-            if (p == 0) {
+        if (tState.gipfsRemaining[0] == 0) {
+            if (plr == 0) {
                 return 0;
             }
 
             return 1;
         }
-        if (t.gipfsRemaining[1] == 0) {
-            if (p == 1) {
+        if (tState.gipfsRemaining[1] == 0) {
+            if (plr == 1) {
                 return 0;
             }
 

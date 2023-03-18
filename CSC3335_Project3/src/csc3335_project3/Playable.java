@@ -15,19 +15,19 @@ public interface Playable {
     /**
      * Returns whose turn it is to move in a given state.
      *
-     * @param s State that is being examined
+     * @param state State that is being examined
      * @return
      */
-    public State toMove(State s);
+    public State toMove(State state);
     
     /**
      * Gives all the possible actions the agent can take from a given state.
      *
-     * @param s State that is being examined
+     * @param state State that is being examined
      * @return ArrayList of all possible actions that can be taken from that
      * state.
      */
-    public ArrayList<String> getActions(State s);
+    public ArrayList<String> getActions(State state);
     
     /**
      * Gives the resulting board state of an action
@@ -41,17 +41,17 @@ public interface Playable {
     /**
      * Determines if a given state is terminal.
      *
-     * @param s State that is being examined
+     * @param state State that is being examined
      * @return true if terminal State, false otherwise
      */
-    public boolean isTerminal(State s);
+    public boolean isTerminal(State state);
     
     /**
      * Generates the utility value of a given state for a player.
      *
-     * @param t Terminal state that is being examined
-     * @param p Player that is being examined
-     * @return The 1 if win, 0 otherwise
+     * @param tState Terminal state that is being examined
+     * @param plr Player that is being examined
+     * @return Integer of 1 if win, 0 otherwise
      */
-    public int utility(State t, int p);
+    public int utility(State tState, int plr);
 }

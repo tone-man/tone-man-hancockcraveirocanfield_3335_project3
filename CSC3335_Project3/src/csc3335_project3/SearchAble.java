@@ -13,9 +13,9 @@ public interface Searchable {
     
     /**
      * Searches a state space given a game
-     * @param g
-     * @param s
+     * @param game The game that is being played
+     * @param state The State the game is currently in
      * @return String - Best next move for the agent
      */
-    public String search(Playable g, State s);
+    public String search(Playable game, State state);
 }
