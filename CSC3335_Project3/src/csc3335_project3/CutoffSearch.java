@@ -4,6 +4,8 @@
  */
 package csc3335_project3;
 
+import csc3335.gipf_game.GipfGame;
+
 /**
  *
  * @author ncrav
@@ -16,7 +18,7 @@ public class CutoffSearch implements Searchable {
     private int evalCutoff; //Unsure if neccessary
     
     @Override
-    public String search(Game g, State s) {
+    public String search(GipfGame g, State s) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
     

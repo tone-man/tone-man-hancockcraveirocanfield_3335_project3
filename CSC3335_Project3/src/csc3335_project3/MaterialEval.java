@@ -4,6 +4,8 @@
  */
 package csc3335_project3;
 
+import csc3335.gipf_game.GipfGame;
+
 /**
  * A basic implementation of eval that considers keeping material only.
  * @author Antonio Craveiro
@@ -11,7 +13,7 @@ package csc3335_project3;
 public class MaterialEval implements Evaluable{
 
     @Override
-    public int eval(Game g, State s) {
+    public int eval(GipfGame g, State s) {
         throw new UnsupportedOperationException("Not supported yet."); 
     }
     
