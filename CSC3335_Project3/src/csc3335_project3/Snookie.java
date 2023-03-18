@@ -11,7 +11,7 @@ import csc3335.gipf_game.GipfPlayable;
 public class Snookie implements GipfPlayable {
 
     private Searchable algorithm;
-    private GipfGame game;
+    private Game game;
     private State curState;
     private boolean debug = false;
     

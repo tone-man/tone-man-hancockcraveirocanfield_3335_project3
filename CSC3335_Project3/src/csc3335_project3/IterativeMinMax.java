@@ -4,7 +4,6 @@
  */
 package csc3335_project3;
 
-import csc3335.gipf_game.GipfGame;
 import java.util.Map;
 
 /**
@@ -21,15 +20,15 @@ public class IterativeMinMax implements Runnable, Searchable{
     }
 
     @Override
-    public String search(GipfGame g, State s) {
+    public String search(Game g, State s) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
     
-    private Tuple<State, Integer> maxValue(GipfGame g, State s){
+    private Tuple<State, Integer> maxValue(Game g, State s){
         throw new UnsupportedOperationException("Not supported yet.");
     }
     
-    private Tuple<State, Integer> minValue(GipfGame g, State s){
+    private Tuple<State, Integer> minValue(Game g, State s){
         throw new UnsupportedOperationException("Not supported yet.");
     }
 }

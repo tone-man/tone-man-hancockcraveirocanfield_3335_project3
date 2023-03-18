@@ -4,8 +4,6 @@
  */
 package csc3335_project3;
 
-import csc3335.gipf_game.GipfGame;
-
 /**
  *
  * @author ncrav
@@ -18,5 +16,5 @@ public interface Evaluable {
      * @param s
      * @return
      */
-    public int eval(GipfGame g, State s);
+    public int eval(Game g, State s);
 }
