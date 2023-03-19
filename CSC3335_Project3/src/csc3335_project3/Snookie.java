@@ -33,12 +33,13 @@ public class Snookie implements GipfPlayable {
     
     @Override
     public String makeGipfMove(int curPlayer) {
-        throw new UnsupportedOperationException("Not supported yet.");
-        
         //Create state object using gipfGame
         
         //Pass it to search
-        search();
+        String nextMove = search();
+        
+        //return the search
+        throw new UnsupportedOperationException("Not supported yet.");
     }
     
     /**
@@ -46,8 +47,11 @@ public class Snookie implements GipfPlayable {
      * @return String - the best action to be taken
      */
     private String search(){
-        
-      String move = algorithm.search(game, curState)
+      
+      //call the search algorithm adn return it
+      String move = algorithm.search(game, curState);
+              
+      throw new UnsupportedOperationException("Not supported yet."); 
     }
 
 
