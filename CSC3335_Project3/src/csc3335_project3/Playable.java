@@ -16,9 +16,9 @@ public interface Playable {
      * Returns whose turn it is to move in a given state.
      *
      * @param state State that is being examined
-     * @return
+     * @return Integer indicating player turn
      */
-    public State toMove(State state);
+    public int toMove(State state);
     
     /**
      * Gives all the possible actions the agent can take from a given state.

@@ -38,20 +38,32 @@ public class GipfAdapter implements Playable {
     }
     
     @Override
-    public State toMove(State state){
-        throw new UnsupportedOperationException("Not supported yet.");
+    public int toMove(State state){
+        return state.turn;
     }
     
 
     @Override
     public ArrayList<String> getActions(State state) {
         throw new UnsupportedOperationException("Not supported yet.");
+        
+        //for each edgespot check direction
+        
+        //for each possible direction of this edgespot, see if move can be made
+        
+        //since move can be made append the action string to array
+        
+        //do nothing if it cant be made
     }
     
 
     @Override
     public State result(State state, String action){
         throw new UnsupportedOperationException("Not supported yet.");
+        
+        //create a new state using the action that was provided
+        
+        //return that state
     }
     
 
