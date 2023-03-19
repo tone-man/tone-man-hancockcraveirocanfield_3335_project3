@@ -13,18 +13,18 @@ import java.util.Arrays;
  */
 public class State {
 
-    public int[] piecesLeft;
-    public int[] gipfsRemaining;
-    public int[] boardMaterial;
-    public int[][] board;
+    public Integer[] piecesLeft;
+    public Integer[] gipfsRemaining;
+    public Integer[] boardMaterial;
+    public Integer[][] board;
     public int turn;
     public String prevAction;
 
-    public State(int[][] board, int[] piecesLeft, int turn) {
+    public State(Integer[][] board, Integer[] piecesLeft, int turn) {
         this.piecesLeft = piecesLeft;
-        this.boardMaterial = new int[2]; //tracks pieces on board?
-        this.gipfsRemaining = new int[2];
-        this.board = new int[9][];
+        this.boardMaterial = new Integer[2]; //tracks pieces on board?
+        this.gipfsRemaining = new Integer[2];
+        this.board = new Integer[9][];
         this.turn = turn;
         this.prevAction = null; //does this work for parenting? Prolly not...
 
@@ -65,9 +65,9 @@ public class State {
     }
     
     public State(GipfGame g) {
-        this.piecesLeft = new int[2];
-        this.gipfsRemaining = new int[2];
-        this.boardMaterial = new int[2];
+        this.piecesLeft = new Integer[2];
+        this.gipfsRemaining = new Integer[2];
+        this.boardMaterial = new Integer[2];
         this.turn = 1;
         this.prevAction = null;
         
