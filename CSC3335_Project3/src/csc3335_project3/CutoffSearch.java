@@ -15,6 +15,11 @@ public class CutoffSearch implements Searchable {
     private int searchCutoff;
     private int evalCutoff; //Unsure if neccessary
     
+    public CutoffSearch(Runnable search, Evaluable evaluator) {
+        this.evaluator = evaluator;
+        this.searchThread = new Thread(search);
+    }
+    
     @Override
     public String search(Playable g, State s) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
