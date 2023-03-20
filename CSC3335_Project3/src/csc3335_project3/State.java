@@ -64,11 +64,18 @@ public class State {
         }
     }
     
+    /**
+     * Generates a state using a GipfGame object.
+     * A common issue is making sure to set the player's turn is set, since
+     * gipfGame does not indicate that for you. Make sure you set it before 
+     * working with the GipfAdapter getActions() or result().
+     * @param g GipfGame that you want to turn into a state.
+     */
     public State(GipfGame g) {
         this.piecesLeft = new Integer[2];
         this.gipfsRemaining = new Integer[2];
         this.boardMaterial = new Integer[2];
-        this.turn = 1;
+        this.turn = -1;
         this.prevAction = null;
         
         this.piecesLeft[0] = g.getPiecesLeft(0);
