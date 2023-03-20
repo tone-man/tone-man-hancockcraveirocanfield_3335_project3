@@ -17,8 +17,8 @@ import java.util.Arrays;
  */
 public class GipfAdapter implements Playable {
     
-    public GipfGame gipfGame; //May get removed?
-    public State initialState;
+    public GipfGame gipfGame; 
+    public State initialState; //May get removed!
     public char[] letterValues = "abcdefghi".toCharArray();
     public static String[] edgeSpots = {"a 1", "a 2", "a 3", "a 4", "a 5", "b 1", "b 6",
         "c 1", "c 7", "d 1", "d 8", "e 1", "e 9", "f 1", "f 8", "g 1", "g 7", "h 1", "h 6",

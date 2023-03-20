@@ -11,17 +11,17 @@ import csc3335.gipf_game.GipfPlayable;
 public class Snookie implements GipfPlayable {
 
     private Searchable algorithm;
-    private GipfGame agame; //Stuetzle's complete game 
-    private Playable game; //Static rules of the game
+    private GipfAdapter game; //Static rules of the game
     private State curState; //Dynamic state of the game
     private boolean debug = false; //Debugger for search time, and other things
     
     public Snookie(GipfGame g) {
-        //save reference of giph game
-        agame = g;
         
-        //init all other internal parameters
+        game = new GipfAdapter(g);
+        curState = new State(g);
         
+        //select our desired alorithm here
+        algorithm = new CutoffSearch(new IterativeMinMax(), new MaterialEval());
     }
     
     /**
@@ -34,12 +34,10 @@ public class Snookie implements GipfPlayable {
     @Override
     public String makeGipfMove(int curPlayer) {
         //Create state object using gipfGame
+        curState = new State(game.gipfGame);
         
-        //Pass it to search
-        String nextMove = search();
-        
-        //return the search
-        throw new UnsupportedOperationException("Not supported yet.");
+        //Pass it to search, and return result
+        return search();
     }
     
     /**
@@ -47,11 +45,10 @@ public class Snookie implements GipfPlayable {
      * @return String - the best action to be taken
      */
     private String search(){
-      
+        
       //call the search algorithm adn return it
-      String move = algorithm.search(game, curState);
-              
-      throw new UnsupportedOperationException("Not supported yet."); 
+      return algorithm.search(game, curState);
+      
     }
 
 
