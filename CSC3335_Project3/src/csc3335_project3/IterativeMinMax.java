@@ -10,10 +10,11 @@ import java.util.Map;
  *
  * @author ncrav
  */
-public class IterativeMinMax implements Runnable, Searchable{
+public class IterativeMinMax implements Runnable, Searchable {
 
     private Map<State, Integer> transpositions;
-    
+    private int player;
+
     @Override
     public void run() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
@@ -21,40 +22,44 @@ public class IterativeMinMax implements Runnable, Searchable{
 
     @Override
     public String search(Playable game, State state) {
-        return String.valueOf(IterMinMax(game, state, 5, 0));
+        player = game.toMove(state);
+        Tuple<Integer, String> max = maxValue(game, state);
+        return max.getSecond();
     }
-    
-    private int IterMinMax(Playable game, State state, int depth, int player){
-        //minimax implementation
-        //https://www.javatpoint.com/mini-max-algorithm-in-ai
-        if (depth == 0 || game.isTerminal(state)) {
-            return game.utility(state, player);
+
+    private Tuple<Integer, String> maxValue(Playable game, State state) {
+        Tuple<Integer, String> ret = new Tuple<>(null, null);
+        if (game.isTerminal(state)) {
+            ret.setFirst(game.utility(state, player));
+            ret.setSecond(null);
+            return ret;
         }
-        if (player == 0) {
-            int maxEva = Integer.MIN_VALUE;
-            for (String move : game.getActions(state)) {
-                State child = game.result(state, move);
-                int eva = IterMinMax(game, child, depth - 1, 1);
-                maxEva = Math.max(maxEva, eva);
+        int v = Integer.MIN_VALUE;
+        for (String a : game.getActions(state)) {
+            Tuple<Integer, String> v2a2 = minValue(game, game.result(state, a));
+            if (v2a2.getFirst() > v) {
+                ret.setFirst(v2a2.getFirst());
+                ret.setSecond(a);
             }
-            return maxEva;
         }
-        else {
-            int minEva = Integer.MAX_VALUE;
-            for (String move : game.getActions(state)) {
-                State child = game.result(state, move);
-                int eva = IterMinMax(game, child, depth - 1, 0);
-                minEva = Math.min(minEva, eva);
+        return ret;
+    }
+
+    private Tuple<Integer, String> minValue(Playable game, State state) {
+        Tuple<Integer, String> ret = new Tuple<>(null, null);
+        if (game.isTerminal(state)) {
+            ret.setFirst(game.utility(state, player));
+            ret.setSecond(null);
+            return ret;
+        }
+        int v = Integer.MAX_VALUE;
+        for (String a : game.getActions(state)) {
+            Tuple<Integer, String> v2a2 = maxValue(game, game.result(state, a));
+            if (v2a2.getFirst() < v) {
+                ret.setFirst(v2a2.getFirst());
+                ret.setSecond(a);
             }
-            return minEva;
         }
-    }
-    
-    private Tuple<State, Integer> maxValue(Playable game, State state){
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-    
-    private Tuple<State, Integer> minValue(Playable game, State state){
-        throw new UnsupportedOperationException("Not supported yet.");
+        return ret;
     }
 }
