@@ -4,22 +4,28 @@
  */
 package csc3335_project3;
 
+import java.util.HashMap;
 import java.util.Map;
 
 /**
  *
  * @author ncrav
  */
-public class IterativeMinMax implements Runnable, Searchable {
+public class IterativeMinMax implements Searchable {
 
     private Map<State, Integer> transpositions;
+    private State startState;
+    private Evaluable evaluator;
+    private String bestAction;
     private int player;
-
-    @Override
-    public void run() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    private int depth;
+    
+    public IterativeMinMax(State state, Evaluable evaluator) {
+        this.transpositions = new HashMap<State, Integer>();
+        this.startState = state;
+        this.evaluator = evaluator;
     }
-
+    
     @Override
     public String search(Playable game, State state) {
         player = game.toMove(state);
@@ -61,5 +67,10 @@ public class IterativeMinMax implements Runnable, Searchable {
             }
         }
         return ret;
+    }
+
+    @Override
+    public String getAction() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }

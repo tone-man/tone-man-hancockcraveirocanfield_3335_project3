@@ -21,7 +21,7 @@ public class Snookie implements GipfPlayable {
         curState = new State(g);
         
         //select our desired alorithm here
-        algorithm = new CutoffSearch(new IterativeMinMax(), new MaterialEval());
+        algorithm = new CutoffSearch(game, curState, new IterativeMinMax(curState, new MaterialEval()), new MaterialEval());
     }
     
     /**
@@ -36,6 +36,9 @@ public class Snookie implements GipfPlayable {
         //Create state object using gipfGame
         curState = new State(game.gipfGame);
         
+        //Set the turn to that of curPlayer
+        curState.turn = curPlayer;
+        
         //Pass it to search, and return result
         return search();
     }
@@ -46,7 +49,7 @@ public class Snookie implements GipfPlayable {
      */
     private String search(){
         
-      //call the search algorithm adn return it
+      //call the search algorithm and return it
       return algorithm.search(game, curState);
       
     }

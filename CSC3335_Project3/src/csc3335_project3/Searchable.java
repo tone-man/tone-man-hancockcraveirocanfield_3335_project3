@@ -18,4 +18,11 @@ public interface Searchable {
      * @return String - Best next move for the agent
      */
     public String search(Playable game, State state);
+    
+    /**
+     * Returns the best action given the most recent state provided. This is
+     * used in objects where the search is not complete or cancelled early.
+     * @return String - next best move for the agent
+     */
+    public String getAction();
 }
