@@ -5,23 +5,45 @@
 package csc3335_project3;
 
 /**
- *
+ * Iterative AlphaBeta is the AlphaBeta algorithm over many iterations. Iterative
+ * AlphaBeta will search starting at depth 1 until MAX_DEPTH is reached, or terminated early. 
+ * Default MAX_DEPTH is 10. 
  * @author ncrav
  */
 public class IterativeAlphaBeta extends DepthLimitedAlphaBeta {
 
-    public IterativeAlphaBeta(Playable game, Evaluable evaluator, int depth) {
-        super(game, evaluator, depth);
+    protected int MAX_DEPTH;
+    
+    public IterativeAlphaBeta(Playable game, Evaluable evaluator, int maxDepth) {
+        super(game, evaluator, 1);
+        this.MAX_DEPTH = maxDepth;
     }
     
     @Override
     public String search(Playable game, State state) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        int depth = 1;
+        
+        //While not deeper than MAX_DEPTH
+        while (depth <= this.MAX_DEPTH)
+        {
+            //Set depth of this search
+            super.depth = depth;
+            
+            //Search the state space
+            super.search(game, state);
+        }
+        
+        return super.bestAction;
     }
 
-    @Override
-    public String getAction() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public int getMAX_DEPTH() {
+        return MAX_DEPTH;
     }
 
+    public void setMaxDepth(int maxDepth) {
+        this.MAX_DEPTH = maxDepth;
+    }
+    
+    
+    
 }

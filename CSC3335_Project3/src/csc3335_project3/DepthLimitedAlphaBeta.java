@@ -12,12 +12,12 @@ import java.util.Map;
  * @author Antonio Craveiro
  */
 public class DepthLimitedAlphaBeta implements Searchable {
-    private Playable game;
-    private Evaluable evaluator;
-    private int plr; //Player for ai
-    private String bestAction;
-    private Map<State, String> transpositions;
-    private int depth;
+    protected Playable game;
+    protected Evaluable evaluator;
+    protected int plr; //Player for ai
+    protected String bestAction;
+    protected Map<State, String> transpositions;
+    protected int depth;
 
     public DepthLimitedAlphaBeta(Playable game, Evaluable evaluator, int depth) {
         this.game = game;
@@ -47,7 +47,7 @@ public class DepthLimitedAlphaBeta implements Searchable {
      * @param beta int - best Min move
      * @return Tuple - an int, String pair representing utility, action.
      */
-    private Tuple<Integer, String> maxValue(State state, Integer depth, int alpha, int beta) {
+    protected Tuple<Integer, String> maxValue(State state, Integer depth, int alpha, int beta) {
         
         //Instance a tuple
         Tuple<Integer, String> max = new Tuple<>(null, null);
@@ -98,7 +98,7 @@ public class DepthLimitedAlphaBeta implements Searchable {
      * @param beta int - best Min move
      * @return Tuple - an int, String pair representing utility, action.
      */
-    private Tuple<Integer, String> minValue(State state, Integer depth, int alpha, int beta ) {
+    protected Tuple<Integer, String> minValue(State state, Integer depth, int alpha, int beta ) {
         
         //Instance a tuple
         Tuple<Integer, String> min = new Tuple<>(null, null);
@@ -139,4 +139,6 @@ public class DepthLimitedAlphaBeta implements Searchable {
         //Return Max tuple now that search is complete
         return min;
     }
+    
+    
 }
