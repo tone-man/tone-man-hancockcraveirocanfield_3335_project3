@@ -16,7 +16,7 @@ public class DepthLimitedAlphaBeta implements Searchable {
     protected Evaluable evaluator;
     protected int plr; //Player for ai
     protected String bestAction;
-    protected Map<State, String> transpositions;
+    protected Map<State, String> transpositions; //May be moved it iterative!
     protected int depth;
 
     public DepthLimitedAlphaBeta(Playable game, Evaluable evaluator, int depth) {
