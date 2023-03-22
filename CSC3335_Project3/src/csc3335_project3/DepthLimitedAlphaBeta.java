@@ -39,6 +39,14 @@ public class DepthLimitedAlphaBeta implements Searchable {
         return bestAction;
     }
     
+    /**
+     * Gets the maximum utility from a State.
+     * @param state State - State being observed
+     * @param depth Integer - recursive calls before reaching desired level of state tree.
+     * @param alpha int - best Max move
+     * @param beta int - best Min move
+     * @return Tuple - an int, String pair representing utility, action.
+     */
     private Tuple<Integer, String> maxValue(State state, Integer depth, int alpha, int beta) {
         
         //Instance a tuple
@@ -82,6 +90,14 @@ public class DepthLimitedAlphaBeta implements Searchable {
         return max;
     }
     
+    /**
+     * Gets the minimum utility from a State.
+     * @param state State - State being observed
+     * @param depth Integer - recursive calls before reaching desired level of state tree.
+     * @param alpha int - best Max move
+     * @param beta int - best Min move
+     * @return Tuple - an int, String pair representing utility, action.
+     */
     private Tuple<Integer, String> minValue(State state, Integer depth, int alpha, int beta ) {
         
         //Instance a tuple
