@@ -10,9 +10,43 @@ package csc3335_project3;
  */
 public class MaterialEval implements Evaluable{
 
-    @Override
-    public int eval(Playable g, State s) {
-        throw new UnsupportedOperationException("Not supported yet."); 
-    }
+    private int plr;
+    private int opponent;
     
+    @Override
+    public float eval(Playable g, State s) {
+        
+        // Check if state is terminal
+        if(g.isTerminal(s))
+            return g.utility(s, plr);
+        
+        // Evauluate state of game
+        // %giphs on board that agent has
+        int value1 = s.gipfsRemaining[this.plr] / 
+                (s.gipfsRemaining[this.plr] + s.gipfsRemaining[this.opponent]);
+        // %normal peices on board that agent has
+        int value2 = s.piecesLeft[this.plr] / 
+                (s.piecesLeft[this.plr] + s.piecesLeft[this.opponent]);
+        // %pieces in hand that agent has
+        int value3 = s.boardMaterial[this.plr] / 
+                (s.boardMaterial[this.plr] + s.boardMaterial[this.opponent]);
+
+        return (float) ((float) 0.4*(value1) + 0.4*(value2) + 0.2*(value3));
+        
+        // 1. gipf pieces
+        // 2. normal pieces
+        // 3. anything else
+        // gipfsRemaining;
+        // piecesLeft;
+        // public Integer[] boardMaterial;
+        // if its your turn your 
+        //  your things / your things + their things 
+
+    }
+
+    @Override
+    public void setPlr(int plr) {
+        this.plr = plr;
+        this.opponent = (plr + 1) % 2;
+    }    
 }

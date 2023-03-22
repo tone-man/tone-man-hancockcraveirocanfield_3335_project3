@@ -36,7 +36,7 @@ public class IterativeAlphaBeta extends DepthLimitedAlphaBeta {
         return super.bestAction;
     }
 
-    public int getMAX_DEPTH() {
+    public int getMaxDepth() {
         return MAX_DEPTH;
     }
 
