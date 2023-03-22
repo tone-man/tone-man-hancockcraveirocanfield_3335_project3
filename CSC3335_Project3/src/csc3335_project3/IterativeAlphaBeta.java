@@ -10,15 +10,10 @@ import java.util.Map;
  *
  * @author ncrav
  */
-public class IterativeAlphaBeta implements Runnable, Searchable {
+public class IterativeAlphaBeta implements Searchable {
 
     private Map<State, Integer> transpositions;
     private int player;
-
-    @Override
-    public void run() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
 
     @Override
     public String search(Playable game, State state) {
@@ -69,5 +64,10 @@ public class IterativeAlphaBeta implements Runnable, Searchable {
             }
         }
         return ret;
+    }
+
+    @Override
+    public String getAction() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }
