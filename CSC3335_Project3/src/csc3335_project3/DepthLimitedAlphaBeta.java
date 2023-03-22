@@ -29,8 +29,9 @@ public class DepthLimitedAlphaBeta implements Searchable {
     @Override
     public String search(Playable game, State state) {
         plr = this.game.toMove(state);
-        Tuple<Integer, String> result = maxValue(state, this.depth, new Tuple<Integer, Integer>(Integer.MIN_VALUE,Integer.MAX_VALUE));
-        return result.getSecond();
+        Tuple<Integer, String> result = maxValue(state, this.depth, Integer.MIN_VALUE, Integer.MAX_VALUE);
+        bestAction = result.getSecond();
+        return bestAction;
     }
 
     @Override
@@ -38,11 +39,88 @@ public class DepthLimitedAlphaBeta implements Searchable {
         return bestAction;
     }
     
-    private Tuple<Integer, String> maxValue(State state, Integer depth, Tuple<Integer, Integer> alphaBeta ) {
+    private Tuple<Integer, String> maxValue(State state, Integer depth, int alpha, int beta) {
         
+        //Instance a tuple
+        Tuple<Integer, String> max = new Tuple<>(null, null);
+        
+        //Check if at terminal state
+        if (game.isTerminal(state)) {
+            
+            //Return the utility of state
+            max.setFirst(game.utility(state, this.plr));
+            max.setSecond(null);
+            return max;
+        }
+        
+        //Check if at cutoff
+        else if(depth == 0) {
+            
+            //Return the evaluation of state
+            max.setFirst(evaluator.eval(game, state));
+            max.setSecond(null);
+            return max;
+        }
+        
+        //Loop over all child action states
+        int value = Integer.MIN_VALUE;
+        for (String a : game.getActions(state)) {
+            //Generate the min state
+            Tuple<Integer, String> min = minValue(game.result(state, a), depth - 1, alpha, beta);
+            if (min.getFirst() > value) {
+                max.setFirst(min.getFirst());
+                max.setSecond(a);
+                alpha = Math.max(alpha, value);
+            }
+            //Kill search if value > beta
+            if (value >= beta) {
+                return max;
+            }
+        }
+        
+        //Return Max tuple now that search is complete
+        return max;
     }
     
-    private Tuple<Integer, String> minValue(State state, Integer depth, Tuple<Integer, Integer> alphaBeta ) {
+    private Tuple<Integer, String> minValue(State state, Integer depth, int alpha, int beta ) {
         
+        //Instance a tuple
+        Tuple<Integer, String> min = new Tuple<>(null, null);
+
+        //Check if at terminal state
+        if (game.isTerminal(state)) {
+
+            //Return the utility of state
+            min.setFirst(game.utility(state, this.plr));
+            min.setSecond(null);
+            return min;
+        } 
+        
+        //Check if at cutoff
+        else if (depth == 0) {
+
+            //Return the evaluation of state
+            min.setFirst(evaluator.eval(game, state));
+            min.setSecond(null);
+            return min;
+        }
+
+        //Loop over all child action states
+        int value = Integer.MAX_VALUE;
+        for (String a : game.getActions(state)) {
+            //Generate the min state
+            Tuple<Integer, String> max = minValue(game.result(state, a), depth - 1, alpha, beta);
+            if (max.getFirst() < value) {
+                min.setFirst(min.getFirst());
+                min.setSecond(a);
+                beta = Math.min(beta, value);
+            }
+            //Kill search if v < alpha
+            if (value <= alpha) {
+                return min;
+            }
+        }
+        //Return Max tuple now that search is complete
+        return min;
     }
 }
