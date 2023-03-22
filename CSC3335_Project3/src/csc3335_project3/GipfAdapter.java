@@ -78,9 +78,9 @@ public class GipfAdapter implements Playable {
         State newState = new State(state);
         
         //decide who's piece is being played
-        Integer piece = GipfGame.WHITE;  
+        Integer piece = GipfGame.BLACK;  
         if(state.turn == 0) {
-            piece = GipfGame.BLACK;
+            piece = GipfGame.WHITE;
         } 
         
         // Make the move, update the state

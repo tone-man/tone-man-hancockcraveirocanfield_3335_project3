@@ -20,7 +20,7 @@ public class TestMain {
     public static void main(String[] args) {
         GipfGame g = new GipfGame(1000);
         
-        int result = g.playGame(new Random_Agent(g), new Snookie(g));
+        int result = g.playGame(new Snookie(g), new Snookie(g));
         
         System.out.println("Player " + result + " Wins!");
     }

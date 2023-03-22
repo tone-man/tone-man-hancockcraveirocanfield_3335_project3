@@ -126,9 +126,9 @@ public class DepthLimitedAlphaBeta implements Searchable {
         int value = Integer.MAX_VALUE;
         for (String a : game.getActions(state)) {
             //Generate the min state
-            Tuple<Float, String> max = minValue(game.result(state, a), depth - 1, alpha, beta);
+            Tuple<Float, String> max = maxValue(game.result(state, a), depth - 1, alpha, beta);
             if (max.getFirst() < value) {
-                min.setFirst(min.getFirst());
+                min.setFirst(max.getFirst());
                 min.setSecond(a);
                 beta = Math.min(beta, value);
             }

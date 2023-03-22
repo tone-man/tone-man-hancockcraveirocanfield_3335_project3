@@ -25,7 +25,7 @@ public class Snookie implements GipfPlayable {
         Evaluable evaluator = new MaterialEval();
         
         //Select algorithm for our search
-        final int MAX_ITERATIONS = 1; //maximum interation depth
+        final int MAX_ITERATIONS = 2; //maximum interation depth
         algorithm = new DepthLimitedAlphaBeta(game, evaluator, MAX_ITERATIONS);//new IterativeAlphaBeta(game, evaluator, MAX_ITERATIONS);
         
         //Since this Algorithm possibly takes longer then five seconds wrap 

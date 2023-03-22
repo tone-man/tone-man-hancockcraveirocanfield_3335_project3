@@ -22,16 +22,16 @@ public class MaterialEval implements Evaluable{
         
         // Evauluate state of game
         // %giphs on board that agent has
-        float value1 = s.gipfsRemaining[this.plr] / 
+        float value1 = (float) s.gipfsRemaining[this.plr] / 
                 (s.gipfsRemaining[this.plr] + s.gipfsRemaining[this.opponent]);
         // %normal peices on board that agent has
-        float value2 = s.piecesLeft[this.plr] / 
+        float value2 = (float) s.piecesLeft[this.plr] / 
                 (s.piecesLeft[this.plr] + s.piecesLeft[this.opponent]);
         // %pieces in hand that agent has
         
         float value3 = 1;
         if (s.boardMaterial[this.plr] + s.boardMaterial[this.opponent] != 0)
-            value3 = s.boardMaterial[this.plr] / 
+            value3 = (float) s.boardMaterial[this.plr] / 
                 (s.boardMaterial[this.plr] + s.boardMaterial[this.opponent]);
 
         return (float) ((float) 0.4*(value1) + 0.4*(value2) + 0.2*(value3));
