@@ -22,7 +22,7 @@ public class TestMain {
         
         int result = g.playGame(new Random_Agent(g), new Snookie(g));
         
-        System.out.println("Player " + result + "Wins!");
+        System.out.println("Player " + result + " Wins!");
     }
     
 }

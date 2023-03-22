@@ -148,7 +148,6 @@ public class GipfAdapter implements Playable {
      * @return Returns true if the move can be made successfully, and false if not
      */
     private boolean isValidMove(String move, State state) {
-        System.out.println(move);
         // Then, make the move
         String[] pMove = move.split(" ");
         Integer col = this.convertLetterToIndex(pMove[0]);
@@ -216,7 +215,6 @@ public class GipfAdapter implements Playable {
      * @return Returns true if the move was made successfully, and false if not
      */
     public boolean makeMove(String move, Integer piece, State state) {
-        System.out.println(move);
         // Then, make the move
         String[] pMove = move.split(" ");
         Integer col = this.convertLetterToIndex(pMove[0]);
@@ -325,7 +323,6 @@ public class GipfAdapter implements Playable {
             }
         }
 
-        System.out.println("Processing " + runs.size() + " runs.");
         // Now, we must handle all the runs we found
         for (Run r : runs) {
             Integer col = r.startingCol;
