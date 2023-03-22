@@ -53,32 +53,5 @@ public interface Playable {
      * @param plr Player that is being examined
      * @return Integer of 1 if win, 0 otherwise
      */
-    public int utility(State tState, int plr);
-    /**
-        // simple utility that compares pieces in reserve and gipf pieces on the field
-
-        //If it runs every turn our player will always be at a disatvatage 
-        if (plr == OUR PLAYERS TURN) {
-            for (int i = 0; i < tStatelist[i]; i++) { // checks the list of possible moves 
-                if(pieces do not get removed OR plr gipf pieces == opponents gipf pieces ){
-                    give the state +.1 //because relative to the reserves not much has changed
-                } else if (plr gipf pieces > opponents gipf pieces) {
-                    give that state +.3
-                } else if (plr gipf pieces < opponents gipf pieces) {
-                    give that state -.3
-                }else //that means theres been a 4 in row 
-                  give that state +.5     
-            
-               if(opponent has no more reserves Or No Gipf pieces){
-                   give state +1       
-               } else if (player has no more reserves OR no Gipf pieces){
-                give state -1
-               }      
-            }
-        } 
-    */ 
-     
-    // unsure about places on the board because on one hand you want more pieces
-    // on the board to controll and make moves but on the other you wanna make
-    // 4 in a row to get your pieces back and maybe take off opponents pieces
+    public float utility(State tState, int plr);
 }

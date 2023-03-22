@@ -14,22 +14,23 @@ public class Snookie implements GipfPlayable {
     private GipfAdapter game; //Static rules of the game
     private State curState; //Dynamic state of the game
     private boolean debug = false; //Debugger for search time, and other things
+    private int turn;
     
     public Snookie(GipfGame g) {
         
+        turn = 0;
         game = new GipfAdapter(g);
-        curState = new State(g);
-        
+        curState = null;
         //Select and evaluator for our game search
         Evaluable evaluator = new MaterialEval();
         
         //Select algorithm for our search
         final int MAX_ITERATIONS = 1; //maximum interation depth
-        Searchable search = new IterativeAlphaBeta(game, evaluator, MAX_ITERATIONS);
+        algorithm = new DepthLimitedAlphaBeta(game, evaluator, MAX_ITERATIONS);//new IterativeAlphaBeta(game, evaluator, MAX_ITERATIONS);
         
         //Since this Algorithm possibly takes longer then five seconds wrap 
         //it in a CutoffSearch object, so it will terminate after a set time.
-        algorithm = new CutoffSearch(game, curState, search);
+        //algorithm = new CutoffSearch(game, curState, search);
     }
     
     /**
@@ -48,7 +49,12 @@ public class Snookie implements GipfPlayable {
         curState.turn = curPlayer;
         
         //Pass it to search, and return result
-        return search();
+        if(turn == 0){
+            turn++;
+            return "a 3 2";
+        }    
+        else 
+            return search();
     }
     
     /**

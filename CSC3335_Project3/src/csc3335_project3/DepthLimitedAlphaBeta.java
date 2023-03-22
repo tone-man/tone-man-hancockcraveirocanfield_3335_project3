@@ -22,6 +22,7 @@ public class DepthLimitedAlphaBeta implements Searchable {
     public DepthLimitedAlphaBeta(Playable game, Evaluable evaluator, int depth) {
         this.game = game;
         this.evaluator = evaluator;
+        this.depth = depth;
         this.bestAction = null;
         this.transpositions = new HashMap<>();
     }
@@ -29,7 +30,7 @@ public class DepthLimitedAlphaBeta implements Searchable {
     @Override
     public String search(Playable game, State state) {
         plr = this.game.toMove(state);
-        Tuple<Integer, String> result = maxValue(state, this.depth, Integer.MIN_VALUE, Integer.MAX_VALUE);
+        Tuple<Float, String> result = maxValue(state, this.depth, Integer.MIN_VALUE, Integer.MAX_VALUE);
         bestAction = result.getSecond();
         return bestAction;
     }
@@ -47,10 +48,10 @@ public class DepthLimitedAlphaBeta implements Searchable {
      * @param beta int - best Min move
      * @return Tuple - an int, String pair representing utility, action.
      */
-    protected Tuple<Integer, String> maxValue(State state, Integer depth, int alpha, int beta) {
+    protected Tuple<Float, String> maxValue(State state, Integer depth, int alpha, int beta) {
         
         //Instance a tuple
-        Tuple<Integer, String> max = new Tuple<>(null, null);
+        Tuple<Float, String> max = new Tuple<>(null, null);
         
         //Check if at terminal state
         if (game.isTerminal(state)) {
@@ -74,7 +75,7 @@ public class DepthLimitedAlphaBeta implements Searchable {
         int value = Integer.MIN_VALUE;
         for (String a : game.getActions(state)) {
             //Generate the min state
-            Tuple<Integer, String> min = minValue(game.result(state, a), depth - 1, alpha, beta);
+            Tuple<Float, String> min = minValue(game.result(state, a), depth - 1, alpha, beta);
             if (min.getFirst() > value) {
                 max.setFirst(min.getFirst());
                 max.setSecond(a);
@@ -98,10 +99,10 @@ public class DepthLimitedAlphaBeta implements Searchable {
      * @param beta int - best Min move
      * @return Tuple - an int, String pair representing utility, action.
      */
-    protected Tuple<Integer, String> minValue(State state, Integer depth, int alpha, int beta ) {
+    protected Tuple<Float, String> minValue(State state, Integer depth, int alpha, int beta ) {
         
         //Instance a tuple
-        Tuple<Integer, String> min = new Tuple<>(null, null);
+        Tuple<Float, String> min = new Tuple<>(null, null);
 
         //Check if at terminal state
         if (game.isTerminal(state)) {
@@ -125,7 +126,7 @@ public class DepthLimitedAlphaBeta implements Searchable {
         int value = Integer.MAX_VALUE;
         for (String a : game.getActions(state)) {
             //Generate the min state
-            Tuple<Integer, String> max = minValue(game.result(state, a), depth - 1, alpha, beta);
+            Tuple<Float, String> max = minValue(game.result(state, a), depth - 1, alpha, beta);
             if (max.getFirst() < value) {
                 min.setFirst(min.getFirst());
                 min.setSecond(a);

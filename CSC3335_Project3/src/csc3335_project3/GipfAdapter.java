@@ -109,7 +109,7 @@ public class GipfAdapter implements Playable {
     }
     
     @Override
-    public int utility(State tState, int plr) {
+    public float utility(State tState, int plr) {
         if (tState.piecesLeft[0] == 0) {
             if (plr == 0)
                 return 0;

@@ -29,12 +29,12 @@ public class IterativeMinMax implements Searchable {
     @Override
     public String search(Playable game, State state) {
         player = game.toMove(state);
-        Tuple<Integer, String> max = maxValue(game, state);
+        Tuple<Float, String> max = maxValue(game, state);
         return max.getSecond();
     }
 
-    private Tuple<Integer, String> maxValue(Playable game, State state) {
-        Tuple<Integer, String> ret = new Tuple<>(null, null);
+    private Tuple<Float, String> maxValue(Playable game, State state) {
+        Tuple<Float, String> ret = new Tuple<>(null, null);
         if (game.isTerminal(state)) {
             ret.setFirst(game.utility(state, player));
             ret.setSecond(null);
@@ -42,7 +42,7 @@ public class IterativeMinMax implements Searchable {
         }
         int v = Integer.MIN_VALUE;
         for (String a : game.getActions(state)) {
-            Tuple<Integer, String> v2a2 = minValue(game, game.result(state, a));
+            Tuple<Float, String> v2a2 = minValue(game, game.result(state, a));
             if (v2a2.getFirst() > v) {
                 ret.setFirst(v2a2.getFirst());
                 ret.setSecond(a);
@@ -51,8 +51,8 @@ public class IterativeMinMax implements Searchable {
         return ret;
     }
 
-    private Tuple<Integer, String> minValue(Playable game, State state) {
-        Tuple<Integer, String> ret = new Tuple<>(null, null);
+    private Tuple<Float, String> minValue(Playable game, State state) {
+        Tuple<Float, String> ret = new Tuple<>(null, null);
         if (game.isTerminal(state)) {
             ret.setFirst(game.utility(state, player));
             ret.setSecond(null);
@@ -60,7 +60,7 @@ public class IterativeMinMax implements Searchable {
         }
         int v = Integer.MAX_VALUE;
         for (String a : game.getActions(state)) {
-            Tuple<Integer, String> v2a2 = maxValue(game, game.result(state, a));
+            Tuple<Float, String> v2a2 = maxValue(game, game.result(state, a));
             if (v2a2.getFirst() < v) {
                 ret.setFirst(v2a2.getFirst());
                 ret.setSecond(a);

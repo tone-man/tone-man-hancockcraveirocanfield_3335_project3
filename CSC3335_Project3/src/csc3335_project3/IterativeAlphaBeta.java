@@ -31,6 +31,7 @@ public class IterativeAlphaBeta extends DepthLimitedAlphaBeta {
             
             //Search the state space
             super.search(game, state);
+            depth++;
         }
         
         return super.bestAction;
@@ -43,7 +44,5 @@ public class IterativeAlphaBeta extends DepthLimitedAlphaBeta {
     public void setMaxDepth(int maxDepth) {
         this.MAX_DEPTH = maxDepth;
     }
-    
-    
     
 }

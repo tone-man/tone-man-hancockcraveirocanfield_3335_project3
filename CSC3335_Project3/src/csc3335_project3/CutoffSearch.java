@@ -44,9 +44,6 @@ public class CutoffSearch implements Searchable, Runnable {
             //Cut search off after searchCutoff
             searchThread.interrupt();
             
-            //Wait for thread to join
-            searchThread.join();
-                
         } catch (InterruptedException ex) {
             result = algorithm.getAction();
             return result;

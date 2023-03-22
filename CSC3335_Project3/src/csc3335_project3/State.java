@@ -20,37 +20,6 @@ public class State {
     public int turn;
     public String prevAction;
 
-    public State(Integer[][] board, Integer[] piecesLeft, int turn) {
-        this.piecesLeft = piecesLeft;
-        this.boardMaterial = new Integer[2]; //tracks pieces on board?
-        this.gipfsRemaining = new Integer[2];
-        this.board = new Integer[9][];
-        this.turn = turn;
-        this.prevAction = null; //does this work for parenting? Prolly not...
-
-        //read the board, and build a deep copy while incrementing piece counts
-        for (int row = 0; row < board.length; row++) {
-            for (int col = 0; col < board[row].length; col++) {
-                int piece = board[row][col];
-
-                if (piece == GipfGame.WHITE_GIPF) {
-                    this.gipfsRemaining[0]++;
-                } else if (piece == GipfGame.BLACK_GIPF) {
-                    this.gipfsRemaining[1]++;
-                } else if (piece == GipfGame.WHITE) {
-                    this.boardMaterial[0]++;
-                } else if (piece == GipfGame.BLACK) {
-                    this.boardMaterial[1]++;
-                }
-                //otherwise the value is empty
-
-                //insert value into table
-                this.board[row][col] = piece;
-            }//end of col
-        }//end of row
-
-    }//end of constructor
-
     public State(State ostate){
         this.piecesLeft = Arrays.copyOf(ostate.piecesLeft, 2);
         this.gipfsRemaining = Arrays.copyOf(ostate.piecesLeft, 2);
@@ -81,7 +50,15 @@ public class State {
         this.piecesLeft[0] = g.getPiecesLeft(0);
         this.piecesLeft[1] = g.getPiecesLeft(1);
         
-        //read the board, and build a deep copy while incrementing piece counts
+        this.gipfsRemaining[0] = 0;
+        this.gipfsRemaining[1] = 0;
+        this.boardMaterial[0] = 0;
+        this.boardMaterial[1] = 0;
+        
+        //get a copy of the board
+        this.board = g.getBoardCopy();
+        
+        //read the board for material
         for(int row = 0; row < board.length; row++) {
             for(int col = 0; col < board[row].length; col++){
                 int piece = board[row][col];
@@ -96,8 +73,6 @@ public class State {
                     this.boardMaterial[1]++;
                 //otherwise the value is empty
                 
-                //insert value into table
-                this.board[row][col] = piece;
             }//end of col
         }//end of row
         
