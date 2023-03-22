@@ -25,11 +25,22 @@ public class State {
         this.gipfsRemaining = Arrays.copyOf(ostate.piecesLeft, 2);
         this.boardMaterial = Arrays.copyOf(ostate.boardMaterial, 2);
         this.turn = ostate.turn;
-        this.prevAction = String.copyValueOf(ostate.prevAction.toCharArray());
+        
+        try {
+            this.prevAction = String.copyValueOf(ostate.prevAction.toCharArray());
+        } catch (NullPointerException e) {
+            this.prevAction = null;
+        }
         
         //copy board across
-        for(int row = 0; row < board.length; row++) {
-            System.arraycopy(ostate.board[row], 0, this.board[row], 0, board[row].length);
+        Integer[][] oboard = ostate.board;
+        this.board = new Integer[oboard.length][];
+        
+        for (int col = 0; col < board.length; col++) {
+            this.board[col] = new Integer[oboard[col].length];
+            for (int pos = 0; pos < oboard[col].length; pos++) {
+                this.board[col][pos] = oboard[col][pos];
+            }
         }
     }
     
