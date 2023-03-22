@@ -20,8 +20,16 @@ public class Snookie implements GipfPlayable {
         game = new GipfAdapter(g);
         curState = new State(g);
         
-        //select our desired alorithm here
-        algorithm = new CutoffSearch(game, curState, new IterativeMinMax(curState, new MaterialEval()), new MaterialEval());
+        //Select and evaluator for our game search
+        Evaluable evaluator = new MaterialEval();
+        
+        //Select algorithm for our search
+        final int MAX_ITERATIONS = 1; //maximum interation depth
+        Searchable search = new IterativeAlphaBeta(game, evaluator, MAX_ITERATIONS);
+        
+        //Since this Algorithm possibly takes longer then five seconds wrap 
+        //it in a CutoffSearch object, so it will terminate after a set time.
+        algorithm = new CutoffSearch(game, curState, search);
     }
     
     /**

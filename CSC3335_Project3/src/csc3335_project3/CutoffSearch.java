@@ -11,7 +11,6 @@ package csc3335_project3;
 public class CutoffSearch implements Searchable, Runnable {
 
     private Playable game;
-    private Evaluable evaluator;
     private Searchable algorithm;
     private Thread searchThread;
     private String result;
@@ -19,10 +18,9 @@ public class CutoffSearch implements Searchable, Runnable {
     private int searchCutoff = 5000;
     private int evalCutoff; //Unsure if neccessary
     
-    public CutoffSearch(Playable g, State s, Searchable search, Evaluable evaluator) {
+    public CutoffSearch(Playable g, State s, Searchable search) {
         this.game = g;
         this.algorithm = search;
-        this.evaluator = evaluator;
         this.curState = s;
         this.result = null;
         this.searchThread = new Thread(this);
