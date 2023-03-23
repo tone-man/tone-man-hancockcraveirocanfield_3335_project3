@@ -12,7 +12,6 @@ public class CutoffSearch implements Searchable, Runnable {
 
     private Playable game;
     private Searchable algorithm;
-    private Thread searchThread;
     private String result;
     private State curState;
     private int searchCutoff = 5000;
@@ -23,7 +22,6 @@ public class CutoffSearch implements Searchable, Runnable {
         this.algorithm = search;
         this.curState = s;
         this.result = null;
-        this.searchThread = new Thread(this);
     }
     
     @Override
@@ -34,6 +32,9 @@ public class CutoffSearch implements Searchable, Runnable {
         
         //Update state
         this.curState = s;
+        
+        //Create thread
+        Thread searchThread = new Thread(this);
         
         try {
             //Run the search
