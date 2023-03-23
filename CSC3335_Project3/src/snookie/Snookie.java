@@ -1,13 +1,13 @@
 
-package csc3335_project3;
+package snookie;
 
-import csc3335_project3.objects.Evaluable;
-import csc3335_project3.objects.IterativeAlphaBeta;
-import csc3335_project3.objects.MaterialEval;
-import csc3335_project3.objects.GipfAdapter;
-import csc3335_project3.objects.CutoffSearch;
-import csc3335_project3.objects.Searchable;
-import csc3335_project3.objects.State;
+import snookie.util.Evaluable;
+import snookie.util.IterativeAlphaBeta;
+import snookie.util.MaterialEval;
+import snookie.util.GipfAdapter;
+import snookie.util.CutoffSearch;
+import snookie.util.Searchable;
+import snookie.util.State;
 import csc3335.gipf_game.GipfGame;
 import csc3335.gipf_game.GipfPlayable;
 

@@ -1,6 +1,6 @@
-package csc3335_project3.objects;
+package snookie.util;
 
-import csc3335_project3.objects.State;
+import snookie.util.State;
 import csc3335.gipf_game.GipfGame;
 import csc3335.gipf_game.Run;
 import java.util.ArrayList;

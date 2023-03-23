@@ -2,11 +2,11 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package csc3335_project3.objects;
+package snookie.util;
 
-import csc3335_project3.objects.Searchable;
-import csc3335_project3.objects.State;
-import csc3335_project3.objects.Tuple;
+import snookie.util.Searchable;
+import snookie.util.State;
+import snookie.util.Tuple;
 import java.util.HashMap;
 import java.util.Map;
 

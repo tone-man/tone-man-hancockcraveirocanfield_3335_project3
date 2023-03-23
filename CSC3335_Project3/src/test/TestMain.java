@@ -6,7 +6,7 @@ package test;
 
 import csc3335.gipf_game.GipfGame;
 import csc3335.gipf_game.Random_Agent;
-import csc3335_project3.Snookie;
+import snookie.Snookie;
 
 /**
  *
