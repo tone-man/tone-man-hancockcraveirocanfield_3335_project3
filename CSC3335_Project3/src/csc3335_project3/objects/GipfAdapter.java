@@ -1,5 +1,6 @@
-package csc3335_project3;
+package csc3335_project3.objects;
 
+import csc3335_project3.objects.State;
 import csc3335.gipf_game.GipfGame;
 import csc3335.gipf_game.Run;
 import java.util.ArrayList;

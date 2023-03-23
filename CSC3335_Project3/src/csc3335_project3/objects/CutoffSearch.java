@@ -2,7 +2,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package csc3335_project3;
+package csc3335_project3.objects;
+
+import csc3335_project3.objects.Searchable;
+import csc3335_project3.objects.State;
 
 /**
  *
@@ -14,7 +17,7 @@ public class CutoffSearch implements Searchable, Runnable {
     private Searchable algorithm;
     private String result;
     private State curState;
-    private int searchCutoff = 5000;
+    private int searchCutoff = 4900;
     private int evalCutoff; //Unsure if neccessary
     
     public CutoffSearch(Playable g, State s, Searchable search) {
@@ -43,7 +46,7 @@ public class CutoffSearch implements Searchable, Runnable {
             Thread.sleep(searchCutoff);
             
             //Cut search off after searchCutoff
-            searchThread.interrupt();
+            searchThread.stop();
             
         } catch (InterruptedException ex) {
             result = algorithm.getAction();

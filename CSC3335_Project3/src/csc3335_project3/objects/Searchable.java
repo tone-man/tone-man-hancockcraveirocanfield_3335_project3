@@ -1,4 +1,6 @@
-package csc3335_project3;
+package csc3335_project3.objects;
+
+import csc3335_project3.objects.State;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license

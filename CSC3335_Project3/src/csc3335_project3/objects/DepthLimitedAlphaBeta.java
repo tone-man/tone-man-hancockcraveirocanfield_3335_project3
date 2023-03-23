@@ -2,8 +2,11 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package csc3335_project3;
+package csc3335_project3.objects;
 
+import csc3335_project3.objects.Searchable;
+import csc3335_project3.objects.State;
+import csc3335_project3.objects.Tuple;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -16,7 +19,7 @@ public class DepthLimitedAlphaBeta implements Searchable {
     protected Evaluable evaluator;
     protected int plr; //Player for ai
     protected String bestAction;
-    protected Map<State, String> transpositions; //May be moved it iterative!
+    protected Map<State, String> transpositions;
     protected int depth;
 
     public DepthLimitedAlphaBeta(Playable game, Evaluable evaluator, int depth) {

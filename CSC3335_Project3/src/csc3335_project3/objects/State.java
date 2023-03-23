@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package csc3335_project3;
+package csc3335_project3.objects;
 
 import csc3335.gipf_game.GipfGame;
 import java.util.Arrays;
