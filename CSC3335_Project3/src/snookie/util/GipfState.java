@@ -18,19 +18,12 @@ public class GipfState {
     public Integer[] boardMaterial;
     public Integer[][] board;
     public int turn;
-    public String prevAction;
 
     public GipfState(GipfState ostate){
         this.piecesLeft = Arrays.copyOf(ostate.piecesLeft, 2);
         this.gipfsRemaining = Arrays.copyOf(ostate.piecesLeft, 2);
         this.boardMaterial = Arrays.copyOf(ostate.boardMaterial, 2);
         this.turn = ostate.turn;
-        
-        try {
-            this.prevAction = String.copyValueOf(ostate.prevAction.toCharArray());
-        } catch (NullPointerException e) {
-            this.prevAction = null;
-        }
         
         //copy board across
         Integer[][] oboard = ostate.board;
@@ -56,7 +49,6 @@ public class GipfState {
         this.gipfsRemaining = new Integer[2];
         this.boardMaterial = new Integer[2];
         this.turn = -1;
-        this.prevAction = null;
         
         this.piecesLeft[0] = g.getPiecesLeft(0);
         this.piecesLeft[1] = g.getPiecesLeft(1);
