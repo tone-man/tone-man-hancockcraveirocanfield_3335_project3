@@ -4,7 +4,6 @@
  */
 package snookie.util;
 
-import snookie.util.State;
 import java.util.ArrayList;
 
 /**
@@ -19,7 +18,7 @@ public interface Playable {
      * @param state State that is being examined
      * @return Integer indicating player turn
      */
-    public int toMove(State state);
+    public int toMove(GipfState state);
     
     /**
      * Gives all the possible actions the agent can take from a given state.
@@ -28,7 +27,7 @@ public interface Playable {
      * @return ArrayList of all possible actions that can be taken from that
      * state.
      */
-    public ArrayList<String> getActions(State state);
+    public ArrayList<String> getActions(GipfState state);
     
     /**
      * Gives the resulting board state of an action
@@ -37,7 +36,7 @@ public interface Playable {
      * @param action String representing the next move
      * @return Resulting board state of the action
      */
-    public State result(State s, String action);
+    public GipfState result(GipfState s, String action);
     
     /**
      * Determines if a given state is terminal.
@@ -45,7 +44,7 @@ public interface Playable {
      * @param state State that is being examined
      * @return true if terminal State, false otherwise
      */
-    public boolean isTerminal(State state);
+    public boolean isTerminal(GipfState state);
     
     /**
      * Generates the utility value of a given state for a player.
@@ -54,5 +53,5 @@ public interface Playable {
      * @param plr Player that is being examined
      * @return Integer of 1 if win, 0 otherwise
      */
-    public float utility(State tState, int plr);
+    public float utility(GipfState tState, int plr);
 }

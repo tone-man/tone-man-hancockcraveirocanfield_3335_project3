@@ -4,8 +4,6 @@
  */
 package snookie.util;
 
-import snookie.util.State;
-
 /**
  * Iterative AlphaBeta is the AlphaBeta algorithm over many iterations. Iterative
  * AlphaBeta will search starting at depth 1 until MAX_DEPTH is reached, or terminated early. 
@@ -22,7 +20,7 @@ public class IterativeAlphaBeta extends DepthLimitedAlphaBeta {
     }
     
     @Override
-    public String search(Playable game, State state) {
+    public String search(Playable game, GipfState state) {
         int depth = 1;
         
         //While not deeper than MAX_DEPTH

@@ -4,8 +4,6 @@
  */
 package snookie.util;
 
-import snookie.util.State;
-
 /**
  * A basic implementation of eval that considers keeping material only.
  * @author Antonio Craveiro
@@ -16,7 +14,7 @@ public class MaterialEval implements Evaluable{
     private int opponent;
     
     @Override
-    public float eval(Playable g, State s) {
+    public float eval(Playable g, GipfState s) {
         
         // Check if state is terminal
         if(g.isTerminal(s))

@@ -11,7 +11,7 @@ import java.util.Arrays;
  *
  * @author ncrav
  */
-public class State {
+public class GipfState {
 
     public Integer[] piecesLeft;
     public Integer[] gipfsRemaining;
@@ -20,7 +20,7 @@ public class State {
     public int turn;
     public String prevAction;
 
-    public State(State ostate){
+    public GipfState(GipfState ostate){
         this.piecesLeft = Arrays.copyOf(ostate.piecesLeft, 2);
         this.gipfsRemaining = Arrays.copyOf(ostate.piecesLeft, 2);
         this.boardMaterial = Arrays.copyOf(ostate.boardMaterial, 2);
@@ -51,7 +51,7 @@ public class State {
      * working with the GipfAdapter getActions() or result().
      * @param g GipfGame that you want to turn into a state.
      */
-    public State(GipfGame g) {
+    public GipfState(GipfGame g) {
         this.piecesLeft = new Integer[2];
         this.gipfsRemaining = new Integer[2];
         this.boardMaterial = new Integer[2];
@@ -89,33 +89,7 @@ public class State {
         
     }//end constructor
     
-    @Override
-    public boolean equals(Object otherObject) {
-        if (otherObject instanceof State) {
-            if (this.board != ((State) otherObject).board) {
-                return false;
-            }
-            if (this.piecesLeft != ((State) otherObject).piecesLeft) {
-                return false;
-            }
-            if (this.boardMaterial != ((State) otherObject).boardMaterial) {
-                return false;
-            }
-            if (this.gipfsRemaining != ((State) otherObject).gipfsRemaining) {
-                return false;
-            }
-            if (this.turn != ((State) otherObject).turn) {
-                return false;
-            }
-            if (!this.prevAction.equals(((State) otherObject).prevAction)) {
-                return false;
-            }
-            return true;
-        }
-        return false;
-    }
-    
-    public State clone() {
-        return new State(this);
+    public GipfState clone() {
+        return new GipfState(this);
     }
 }

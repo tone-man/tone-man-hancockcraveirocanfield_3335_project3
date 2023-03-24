@@ -4,8 +4,6 @@
  */
 package snookie.util;
 
-import snookie.util.State;
-
 /**
  *
  * @author ncrav
@@ -18,7 +16,7 @@ public interface Evaluable {
      * @param s
      * @return
      */
-    public float eval(Playable g, State s);
+    public float eval(Playable g, GipfState s);
     
     /**
      * Informs the evaluator which player the agent is.

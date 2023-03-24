@@ -7,7 +7,7 @@ import snookie.util.MaterialEval;
 import snookie.util.GipfAdapter;
 import snookie.util.CutoffSearch;
 import snookie.util.Searchable;
-import snookie.util.State;
+import snookie.util.GipfState;
 import csc3335.gipf_game.GipfGame;
 import csc3335.gipf_game.GipfPlayable;
 
@@ -19,7 +19,7 @@ public class Snookie implements GipfPlayable {
 
     private Searchable algorithm;
     private GipfAdapter game; //Static rules of the game
-    private State curState; //Dynamic state of the game
+    private GipfState curState; //Dynamic state of the game
     private boolean debug = false; //Debugger for search time, and other things
     private int turn;
     
@@ -50,7 +50,7 @@ public class Snookie implements GipfPlayable {
     @Override
     public String makeGipfMove(int curPlayer) {
         //Create state object using gipfGame
-        curState = new State(game.gipfGame);
+        curState = new GipfState(game.gipfGame);
         
         //Set the turn to that of curPlayer
         curState.turn = curPlayer;

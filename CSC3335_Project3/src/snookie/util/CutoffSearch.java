@@ -4,9 +4,6 @@
  */
 package snookie.util;
 
-import snookie.util.Searchable;
-import snookie.util.State;
-
 /**
  *
  * @author ncrav
@@ -16,11 +13,11 @@ public class CutoffSearch implements Searchable, Runnable {
     private Playable game;
     private Searchable algorithm;
     private String result;
-    private State curState;
+    private GipfState curState;
     private int searchCutoff = 4900;
     private int evalCutoff; //Unsure if neccessary
     
-    public CutoffSearch(Playable g, State s, Searchable search) {
+    public CutoffSearch(Playable g, GipfState s, Searchable search) {
         this.game = g;
         this.algorithm = search;
         this.curState = s;
@@ -28,7 +25,7 @@ public class CutoffSearch implements Searchable, Runnable {
     }
     
     @Override
-    public String search(Playable g, State s) {
+    public String search(Playable g, GipfState s) {
         
         //Reset result
         result = null;

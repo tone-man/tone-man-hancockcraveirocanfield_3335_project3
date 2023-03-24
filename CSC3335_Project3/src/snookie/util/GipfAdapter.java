@@ -1,6 +1,5 @@
 package snookie.util;
 
-import snookie.util.State;
 import csc3335.gipf_game.GipfGame;
 import csc3335.gipf_game.Run;
 import java.util.ArrayList;
@@ -19,7 +18,7 @@ import java.util.Arrays;
 public class GipfAdapter implements Playable {
     
     public GipfGame gipfGame; 
-    public State initialState; //May get removed!
+    public GipfState initialState; //May get removed!
     public char[] letterValues = "abcdefghi".toCharArray();
     public static String[] edgeSpots = {"a 1", "a 2", "a 3", "a 4", "a 5", "b 1", "b 6",
         "c 1", "c 7", "d 1", "d 8", "e 1", "e 9", "f 1", "f 8", "g 1", "g 7", "h 1", "h 6",
@@ -41,18 +40,18 @@ public class GipfAdapter implements Playable {
     }
     
     @Override
-    public int toMove(State state){
+    public int toMove(GipfState state){
         return state.turn;
     }
     
     @Override
-    public ArrayList<String> getActions(State state) {
+    public ArrayList<String> getActions(GipfState state) {
         
         ArrayList<String> actions = new ArrayList<>();
         
         //Copy gipf board data if state is null
         if (state == null)
-            state = new State(this.gipfGame);
+            state = new GipfState(this.gipfGame);
         
         //for each edgespot check direction
         for (String spot : edgeSpots){
@@ -73,10 +72,10 @@ public class GipfAdapter implements Playable {
     } //end of getActions
     
     @Override
-    public State result(State state, String action){
+    public GipfState result(GipfState state, String action){
         
         //clone original state        
-        State newState = new State(state);
+        GipfState newState = new GipfState(state);
         
         //decide who's piece is being played
         Integer piece = GipfGame.BLACK;  
@@ -93,7 +92,7 @@ public class GipfAdapter implements Playable {
     
 
     @Override
-    public boolean isTerminal(State state){
+    public boolean isTerminal(GipfState state){
         if (state.piecesLeft[0] == 0) {
             return true;
         }
@@ -110,7 +109,7 @@ public class GipfAdapter implements Playable {
     }
     
     @Override
-    public float utility(State tState, int plr) {
+    public float utility(GipfState tState, int plr) {
         if (tState.piecesLeft[0] == 0) {
             if (plr == 0)
                 return 0;
@@ -148,7 +147,7 @@ public class GipfAdapter implements Playable {
      * <location> <direction>". For example, "a 1 1".
      * @return Returns true if the move can be made successfully, and false if not
      */
-    private boolean isValidMove(String move, State state) {
+    private boolean isValidMove(String move, GipfState state) {
         // Then, make the move
         String[] pMove = move.split(" ");
         Integer col = this.convertLetterToIndex(pMove[0]);
@@ -215,7 +214,7 @@ public class GipfAdapter implements Playable {
      * types 
      * @return Returns true if the move was made successfully, and false if not
      */
-    public boolean makeMove(String move, Integer piece, State state) {
+    public boolean makeMove(String move, Integer piece, GipfState state) {
         // Then, make the move
         String[] pMove = move.split(" ");
         Integer col = this.convertLetterToIndex(pMove[0]);
@@ -255,7 +254,7 @@ public class GipfAdapter implements Playable {
      * @return True if the push was successful, false if it failed
      * @throws ArrayIndexOutOfBoundsException
      */
-    private boolean push(State state, Integer piece, 
+    private boolean push(GipfState state, Integer piece, 
             Integer col, Integer pos, Integer dir)
             throws ArrayIndexOutOfBoundsException {
         // push to the next location
@@ -290,7 +289,7 @@ public class GipfAdapter implements Playable {
      * the pieces accordingly.
      * @param state The state to be checked for runs
      */
-    public void checkForFourInARow(State state) {
+    public void checkForFourInARow(GipfState state) {
         ArrayList< Run> runs = new ArrayList();
         Integer curRun;
         Integer numInRun;
@@ -376,7 +375,7 @@ public class GipfAdapter implements Playable {
         return (piece % 2 == curRun % 2) && !piece.equals(GipfGame.EMPTY);
     }
     
-    private boolean isInRange(State state, int col, int pos) {
+    private boolean isInRange(GipfState state, int col, int pos) {
         return col >= 0 && col < state.board.length
                 && pos >= 0 & pos < state.board[col].length;
     }

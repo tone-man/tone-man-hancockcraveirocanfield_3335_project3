@@ -4,9 +4,6 @@
  */
 package snookie.util;
 
-import snookie.util.Searchable;
-import snookie.util.State;
-import snookie.util.Tuple;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -19,7 +16,7 @@ public class DepthLimitedAlphaBeta implements Searchable {
     protected Evaluable evaluator;
     protected int plr; //Player for ai
     protected String bestAction;
-    protected Map<State, String> transpositions;
+    protected Map<GipfState, String> transpositions;
     protected int depth;
 
     public DepthLimitedAlphaBeta(Playable game, Evaluable evaluator, int depth) {
@@ -31,10 +28,11 @@ public class DepthLimitedAlphaBeta implements Searchable {
     }
 
     @Override
-    public String search(Playable game, State state) {
+    public String search(Playable game, GipfState state) {
         plr = this.game.toMove(state);
         Tuple<Float, String> result = maxValue(state, this.depth, Integer.MIN_VALUE, Integer.MAX_VALUE);
         bestAction = result.getSecond();
+        transpositions.clear(); //This is a problem because we nuke the thread, but I do not have time to fix it
         return bestAction;
     }
 
@@ -51,10 +49,20 @@ public class DepthLimitedAlphaBeta implements Searchable {
      * @param beta int - best Min move
      * @return Tuple - an int, String pair representing utility, action.
      */
-    protected Tuple<Float, String> maxValue(State state, Integer depth, int alpha, int beta) {
+    protected Tuple<Float, String> maxValue(GipfState state, Integer depth, int alpha, int beta) {
         
         //Instance a tuple
         Tuple<Float, String> max = new Tuple<>(null, null);
+        
+        //Check if we have seen this state before
+        String lookup = transpositions.get(state);
+
+        if (lookup != null) {
+            max.setFirst(Float.valueOf(lookup));
+            max.setSecond(null);
+            transpositions.put(state, (String) Float.toString(max.getFirst()));
+            return max;
+        }
         
         //Check if at terminal state
         if (game.isTerminal(state)) {
@@ -62,6 +70,7 @@ public class DepthLimitedAlphaBeta implements Searchable {
             //Return the utility of state
             max.setFirst(game.utility(state, this.plr));
             max.setSecond(null);
+            transpositions.put(state, (String) Float.toString(max.getFirst()));
             return max;
         }
         
@@ -71,6 +80,7 @@ public class DepthLimitedAlphaBeta implements Searchable {
             //Return the evaluation of state
             max.setFirst(evaluator.eval(game, state));
             max.setSecond(null);
+            transpositions.put(state, (String) Float.toString(max.getFirst()));
             return max;
         }
         
@@ -86,11 +96,13 @@ public class DepthLimitedAlphaBeta implements Searchable {
             }
             //Kill search if value > beta
             if (value >= beta) {
+                transpositions.put(state, (String) Float.toString(max.getFirst()));
                 return max;
             }
         }
         
         //Return Max tuple now that search is complete
+        transpositions.put(state, (String) Float.toString(max.getFirst()));
         return max;
     }
     
@@ -102,17 +114,28 @@ public class DepthLimitedAlphaBeta implements Searchable {
      * @param beta int - best Min move
      * @return Tuple - an int, String pair representing utility, action.
      */
-    protected Tuple<Float, String> minValue(State state, Integer depth, int alpha, int beta ) {
+    protected Tuple<Float, String> minValue(GipfState state, Integer depth, int alpha, int beta ) {
         
         //Instance a tuple
         Tuple<Float, String> min = new Tuple<>(null, null);
 
+        //Check if we have seen this state before
+        String lookup = transpositions.get(state);
+        
+        if(lookup != null)
+        {
+            min.setFirst(Float.valueOf(lookup));
+            min.setSecond(null);
+            return min;
+        }
+        
         //Check if at terminal state
         if (game.isTerminal(state)) {
 
             //Return the utility of state
             min.setFirst(game.utility(state, this.plr));
             min.setSecond(null);
+            transpositions.put(state, (String) Float.toString(min.getFirst()));
             return min;
         } 
         
@@ -122,6 +145,7 @@ public class DepthLimitedAlphaBeta implements Searchable {
             //Return the evaluation of state
             min.setFirst(evaluator.eval(game, state));
             min.setSecond(null);
+            transpositions.put(state, (String) Float.toString(min.getFirst()));
             return min;
         }
 
@@ -137,12 +161,13 @@ public class DepthLimitedAlphaBeta implements Searchable {
             }
             //Kill search if v < alpha
             if (value <= alpha) {
+                transpositions.put(state, (String) Float.toString(min.getFirst()));
                 return min;
             }
         }
         //Return Max tuple now that search is complete
+        transpositions.put(state, (String) Float.toString(min.getFirst()));
         return min;
     }
-    
     
 }

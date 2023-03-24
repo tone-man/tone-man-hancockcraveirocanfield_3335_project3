@@ -4,8 +4,6 @@
  */
 package snookie.util;
 
-import java.util.Objects;
-
 /**
  * Tuple is a set of two Objects.
  * @author Antonio Craveiro
