@@ -14,7 +14,7 @@ public class CutoffSearch implements Searchable, Runnable {
     private Searchable algorithm;
     private String result;
     private GipfState curState;
-    private int searchCutoff = 4900;
+    private int searchCutoff = 4800;
     private int evalCutoff; //Unsure if neccessary
     
     public CutoffSearch(Playable g, GipfState s, Searchable search) {
